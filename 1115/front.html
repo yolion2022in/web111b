@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam 01</title>
+</head>
+<body>
+    <div id="main">
+        <form action="http://web111b.com:6080/1115/backend.php" method="get">
+            姓名：<input type="text" name="user" id=""><br>
+            密碼：<input type="password" name="pw" id=""><br>
+            mail：<input type="text" name="mail" id=""><br>
+            學歷：
+            <select name="edu" id="">
+                <option value="primary">國小</option>
+                <option value="junior">國中</option>
+                <option value="senior">高中</option>
+                <option value="college">大學</option>
+                <option value="other">其他</option>
+            </select>
+            <br>
+            喜好：
+                <input type="checkbox" name="hobbys[]" id="" value="eat">吃&emsp;
+                <input type="checkbox" name="hobbys[]" id="" value="drink">喝&emsp;
+                <input type="checkbox" name="hobbys[]" id="" value="play">玩&emsp;
+                <input type="checkbox" name="hobbys[]" id="" value="merry">樂
+            <br><br>&emsp;&emsp;&emsp;
+            <button type="submit">送出</button>
+            &emsp;&emsp;&emsp;
+            <button type="reset">重設</button>
+        </form>
+    </div>
+</body>
+</html>
