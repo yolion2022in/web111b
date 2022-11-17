@@ -17,11 +17,8 @@
                 }
                 echo '<br>';
             }
-            // echo '
-            // <form action="php_draw_star.php" method="get">
-            //     <input type="submit" value="返回">
-            // </form>
-            // ';
+
+            echo '<button onclick="history.back()">Go Back</button>';
         }else{
             // echo '<b style="color:red">輸入值必須是『數值』！</b>';
     ?>
