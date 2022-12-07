@@ -1,0 +1,18 @@
+
+1. 練習⼀: php_function_practice.php 下⾯ function.php 的 $a 與 $b 的值，改由表單作輸入後，送出獲得。
+
+   function.php
+   <?php
+     $a= "早餐";
+     $b= "漢堡";
+     function eat($a, $b)
+       echo "今天" . $a . "吃" . $b . "<br>" ;
+     }
+     eat($a,$b);
+   ?>
+
+
+2. 寫一函數在 arg1～arg2之中 抽出 arg3 個不重複號碼。
+
+   rand(min, max);
+
