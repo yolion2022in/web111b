@@ -1,31 +1,41 @@
 <?php
-
 class Exercise1207 {
     const BR = '<br>';
     const FAIL = '<h2 style="color:red">Fail ！</h2>';
 
-    public function outTitle($str, $color='#008080'){   //輸出標題列
+    public function titleBar($str, $color='#008080'){   //輸出標題列
         return "<h3 style='background:$color'>$str</h3>";
     }
 
-    public function square($num, $char){    //exercise 01
-        return (empty($num) || empty($char)) ? self::FAIL : $this->drawSquare($num, $char);
-    }
+    //--------------------------
+    public function __call($name, $arguments){
+        //基礎過濾
+        if(!$arguments) return self::FAIL;
 
-    public function matrix($w, $h){ //exercise 02
-        return (empty($w) || empty($h)) ? self::FAIL : $this->drawMatrix($w, $h);
-    }
+        foreach($arguments as $arg){
+            if(empty($arg)) return self::FAIL;
+        }
 
-    public function calculateBody($cm, $kg){      //exercise 03
-        return (empty($cm) || empty($kg)) ? self::FAIL : $this->convertBody($cm, $kg);
-    }
-
-    public function oddEven($num){      //exercise 04
-        return empty($num) ? self::FAIL : $this->oddOrEven($num);
-    }
-
-    public function decomp($string){    //exercise 05
-        return empty($string) ? self::FAIL : $this->split2char($string);
+        //將老師指定的方法名稱，導向私有方法處理。 (如未指定，可直接從__call導至私有方法，無須多此一舉)
+        switch($name){
+            case 'square':
+                return $this->drawSquare($arguments[0], $arguments[1]);
+                break;
+            case 'matrix':
+                return $this->drawMatrix($arguments[0], $arguments[1]);
+                break;
+            case 'calculateBody':
+                return $this->convertBody($arguments[0], $arguments[1]);
+                break;
+            case 'oddEven':
+                return $this->oddOrEven($arguments[0]);
+                break;
+            case 'decomp':
+                return $this->split2char($arguments[0]);
+                break;
+            default:
+                return "<h2>unsupported method ： $name </h2>";
+        }
     }
 
 
@@ -43,10 +53,11 @@ class Exercise1207 {
             }
             $result .= self::BR;
         }
+
         return $result;
     }
 
-    private function drawMatrix(){  //exercise 02 畫數字矩陣
+    private function drawMatrix(){  //exercise 02 畫數字矩陣 (含排版對齊)
         $args = func_get_args();
         $w = $args[0];
         $h = $args[1];
@@ -70,7 +81,7 @@ class Exercise1207 {
         $kg = $args[1]; //kg
         $result['inch'] = "身高（ $cm cm = ". round($cm/2.54 , 3) ." inch ）" . self::BR;
         $result['pound'] = "體重（ $kg kg = ". round($kg/.454 , 3) ." pound ）" . self::BR;
-        return $result;
+        return implode($result);
     }
 
     private function oddOrEven($num){   //exercise 04 判斷奇偶數
@@ -81,7 +92,7 @@ class Exercise1207 {
     private function split2char($string){   //exercise 05 字串拆解成字元(空白分隔)
         // return chunk_split($string, 1, '　');    //英數only
         // return wordwrap($string, 1, "　", true); //英數only
-        return implode('　', preg_split('//u', $string, -1, PREG_SPLIT_NO_EMPTY));  //unicode ok
+        return implode('　', preg_split('//u', $string, -1, PREG_SPLIT_NO_EMPTY));  //unicode ok 如：中日韓語系
     }
 
 }
